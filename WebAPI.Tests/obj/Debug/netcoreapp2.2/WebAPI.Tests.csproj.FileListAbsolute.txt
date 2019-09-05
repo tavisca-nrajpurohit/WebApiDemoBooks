@@ -1,0 +1,17 @@
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebAPI.Tests.deps.json
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebAPI.Tests.runtimeconfig.json
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebAPI.Tests.runtimeconfig.dev.json
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebAPI.Tests.dll
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebAPI.Tests.pdb
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebApiDemo.dll
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\bin\Debug\netcoreapp2.2\WebApiDemo.pdb
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.csprojAssemblyReference.cache
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.csproj.CoreCompileInputs.cache
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.AssemblyInfoInputs.cache
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.AssemblyInfo.cs
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.csproj.CopyComplete
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.dll
+C:\Users\nrajpurohit\source\repos\WebApiDemo\WebAPI.Tests\obj\Debug\netcoreapp2.2\WebAPI.Tests.pdb
