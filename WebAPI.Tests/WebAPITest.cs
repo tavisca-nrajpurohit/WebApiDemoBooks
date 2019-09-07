@@ -28,7 +28,7 @@ namespace WebAPI.Tests
             Response response = bookservice.Get(1);
             List<Book> booklist = response.booklist;
 
-            Assert.True(booklist.Count == 1);
+            Assert.True(booklist[0].id == 1);
         }
 
         [Fact]
@@ -57,30 +57,30 @@ namespace WebAPI.Tests
             Book book = new Book() { id =15,price=140,title="Book twelve",author="Neelesh ji",category="Fiction"};
             Response response = bookservice.Post(book);
             List<Book> booklist = response.booklist;
-            string msg = response.message;
+            string responseMessage = response.message;
 
-            Assert.Equal("Data Added Successfully !", msg);
+            Assert.Equal("Data Added Successfully !", responseMessage);
             response = bookservice.Delete(15);
         }
 
         [Fact]
-        public void POST_Input_with_negetive_Id_and_price()
+        public void POST_Input_with_negetive_Book_Id_and_price()
         {
             Book book = new Book() { id = -1, price = -140, title = "Book twelve", author = "Neelesh ji", category = "Fiction" };
             Response response = bookservice.Post(book);
             List<Book> booklist = response.booklist;
-            string msg = response.message;
-            Assert.Equal("Error: Invalid Book ID or Price, they should be a positive number!", msg);
+            string responseMessage = response.message;
+            Assert.Equal("Error: Invalid Book ID or Price, they should be a positive number!", responseMessage);
         }
 
         [Fact]
-        public void POST_Input_With_NON_ALphabet_Book_Title()
+        public void POST_Input_With_Non_Alphabet_Book_Title()
         {
             Book book = new Book() { id = 12, price = 40, title = "Book 2twelve", author = "Neelesh2 ji", category = "2Fiction" };
             Response response = bookservice.Post(book);
             List<Book> booklist = response.booklist;
-            string msg = response.message;
-            Assert.Equal("Error: Invalid Book Title, Author or Category. Please use only Alphabets for them!", msg);
+            string responseMessage = response.message;
+            Assert.Equal("Error: Invalid Book Title, Author or Category. Please use only Alphabets for them!", responseMessage);
         }
 
         [Fact]
@@ -103,7 +103,6 @@ namespace WebAPI.Tests
 
             Assert.Equal("Error: Please use the Same Book ID. Book ID cannot be changed!", msg);
         }
-
 
         [Fact]
         public void PUT_Input_with_negetive_Id_and_price()
@@ -157,8 +156,5 @@ namespace WebAPI.Tests
             string msg = response.message;
             Assert.Equal("Error: No such Book Found in the Repository", msg);
         }
-
-
-
     }
 }

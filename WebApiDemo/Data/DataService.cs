@@ -26,15 +26,15 @@ namespace WebApiDemo.Data
             }
         }
 
-        public Response GenerateResponse(List<Book> itemList, String errorMessage)
+        public Response GenerateResponse(List<Book> itemList, String errorMessage, int statusCode)
         {
-            Response response = new Response(itemList,errorMessage);
+            Response response = new Response(itemList,errorMessage, statusCode);
             return response;
         }
 
         public Response Get()
         {
-            return GenerateResponse(bookList,null);
+            return GenerateResponse(bookList,null,200);
         }
 
         public Response Get(int id)
@@ -45,10 +45,10 @@ namespace WebApiDemo.Data
                 {
                     List<Book> itemlist = new List<Book>();
                     itemlist.Add(book);
-                    return GenerateResponse(itemlist,null);
+                    return GenerateResponse(itemlist,null,200);
                 }
             }
-            return GenerateResponse(null,"Error: No such Book Found in the Repository");
+            return GenerateResponse(null,"Error: No such Book Found in the Repository",404);
         }
 
         public Response Put(int id, Book book)
@@ -62,10 +62,10 @@ namespace WebApiDemo.Data
 
                     string jsonStr = JsonConvert.SerializeObject(bookList.ToArray());
                     System.IO.File.WriteAllText(jsonFileName, jsonStr);
-                    return GenerateResponse(null,"Data Updated Successfully!");
+                    return GenerateResponse(null,"Data Updated Successfully!",200);
                 }
             }
-            return GenerateResponse(null, "Error: Could not update Data. Book with this ID was not found!");
+            return GenerateResponse(null, "Error: Could not update Data. Book with this ID was not found!",409);
             
         }
 
@@ -86,11 +86,11 @@ namespace WebApiDemo.Data
                 bookList.Add(book);
                 string jsonStr = JsonConvert.SerializeObject(bookList.ToArray());
                 System.IO.File.WriteAllText(jsonFileName, jsonStr);
-                return GenerateResponse(null, "Data Added Successfully !") ;
+                return GenerateResponse(null, "Data Added Successfully !",201) ;
             }
             else
             {
-                return GenerateResponse(null, "Error: Could not add data. | Reason: Book Id should be unique!");
+                return GenerateResponse(null, "Error: Could not add data. | Reason: Book Id should be unique!",409);
             }
         }
 
@@ -103,10 +103,10 @@ namespace WebApiDemo.Data
                     bookList.Remove(book);
                     string jsonStr = JsonConvert.SerializeObject(bookList.ToArray());
                     System.IO.File.WriteAllText(jsonFileName, jsonStr);
-                    return GenerateResponse(null, "Data Deleted Successfully !");
+                    return GenerateResponse(null, "Data Deleted Successfully !",204);
                 }
             }
-            return GenerateResponse(null, "Error: No such Book Found in the Repository");
+            return GenerateResponse(null, "Error: No such Book Found in the Repository",404);
         }
     }
 }

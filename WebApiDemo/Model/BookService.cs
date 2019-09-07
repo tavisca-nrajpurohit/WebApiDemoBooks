@@ -12,9 +12,9 @@ namespace WebApiDemo.Model
         DataService dataClass = new DataService();
         
 
-        public Response GenerateResponse(List<Book> itemList, String errorMessage)
+        public Response GenerateResponse(List<Book> itemList, String errorMessage, int statusCode)
         {
-            Response response = new Response(itemList, errorMessage);
+            Response response = new Response(itemList, errorMessage, statusCode);
             return response;
         }
 
@@ -31,7 +31,7 @@ namespace WebApiDemo.Model
             }
             else
             {
-                return GenerateResponse(null, "Error: Invalid Book id, should be a positive number!");
+                return GenerateResponse(null, "Error: Invalid Book id, should be a positive number!",409);
             }
             
         }
@@ -58,12 +58,12 @@ namespace WebApiDemo.Model
                 }
                 else
                 {
-                    return GenerateResponse(null, "Error: Invalid Book Title, Author or Category. Please use only Alphabets for them!");
+                    return GenerateResponse(null, "Error: Invalid Book Title, Author or Category. Please use only Alphabets for them!",409);
                 }
             }
             else
             {
-                return GenerateResponse(null, "Error: Invalid Book ID or Price, they should be a positive number!");
+                return GenerateResponse(null, "Error: Invalid Book ID or Price, they should be a positive number!",409);
             }
         }
 
@@ -81,7 +81,7 @@ namespace WebApiDemo.Model
         {
             if(id != book.id)
             {
-                return GenerateResponse(null, "Error: Please use the Same Book ID. Book ID cannot be changed!");
+                return GenerateResponse(null, "Error: Please use the Same Book ID. Book ID cannot be changed!",409);
             }
 
             if (isPositive(book.id) && isPositive(book.price))
@@ -92,12 +92,12 @@ namespace WebApiDemo.Model
                 }
                 else
                 {
-                    return GenerateResponse(null, "Error: Invalid Book Title, Author or Category. Please use only Alphabets for them!");
+                    return GenerateResponse(null, "Error: Invalid Book Title, Author or Category. Please use only Alphabets for them!",409);
                 }
             }
             else
             {
-                return GenerateResponse(null, "Error: Invalid Book ID or Price, they should be a positive number!");
+                return GenerateResponse(null, "Error: Invalid Book ID or Price, they should be a positive number!",409);
             }
         }
 
@@ -109,7 +109,7 @@ namespace WebApiDemo.Model
             }
             else
             {
-                return GenerateResponse(null, "Error: Invalid Book id, should be a positive number!");
+                return GenerateResponse(null, "Error: Invalid Book id, should be a positive number!",409);
             }
         }
        

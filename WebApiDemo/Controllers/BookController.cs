@@ -20,37 +20,42 @@ namespace WebApiDemo.Controllers
 
         // GET: api/Book
         [HttpGet]
-        public Response Get()
+        public ActionResult<Response> Get()
         {
-            return bookService.Get();
+            Response response =  bookService.Get();
+            return StatusCode(response.statusCode, response);
         }
 
         // GET: api/Book/5
         [HttpGet("{id}", Name = "Get")]
-        public Response Get(int id)
+        public ActionResult<Response> Get(int id)
         {
-            return bookService.Get(id);
+            Response response = bookService.Get(id);
+            return StatusCode(response.statusCode, response);
         }
 
         // POST: api/Book
         [HttpPost]
-        public Response Post([FromBody] Book book)
+        public ActionResult<Response> Post([FromBody] Book book)
         {
-            return bookService.Post(book);
+            Response response = bookService.Post(book);
+            return StatusCode(response.statusCode, response);
         }
 
         // PUT: api/Dummy/5
         [HttpPut("{id}")]
-        public Response Put(int id, [FromBody] Book book)
+        public ActionResult<Response> Put(int id, [FromBody] Book book)
         {
-            return bookService.Put(id, book);
+            Response response = bookService.Put(id, book);
+            return StatusCode(response.statusCode, response);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public Response Delete(int id)
+        public ActionResult<Response> Delete(int id)
         {
-            return bookService.Delete(id);
+            Response response = bookService.Delete(id);
+            return StatusCode(response.statusCode, response);
         }
     }
 }
