@@ -1,11 +1,8 @@
-using System;
-using Xunit;
+using System.Collections.Generic;
 using WebApiDemo.Contracts;
 using WebApiDemo.Data;
 using WebApiDemo.Model;
-using WebApiDemo.Controllers;
-using WebApiDemo.Contracts;
-using System.Collections.Generic;
+using Xunit;
 
 namespace WebAPI.Tests
 {
@@ -37,7 +34,7 @@ namespace WebAPI.Tests
             Response response = bookservice.Get(-1);
             List<Book> booklist = response.booklist;
             string msg = response.message;
-            
+
             Assert.Equal("Error: Invalid Book id, should be a positive number!", msg);
         }
 
@@ -47,14 +44,14 @@ namespace WebAPI.Tests
             Response response = bookservice.Get(999);
             List<Book> booklist = response.booklist;
             string msg = response.message;
-            
+
             Assert.Equal("Error: No such Book Found in the Repository", msg);
         }
 
         [Fact]
         public void POST_With_Everything_Good()
         {
-            Book book = new Book() { id =15,price=140,title="Book twelve",author="Neelesh ji",category="Fiction"};
+            Book book = new Book() { id = 15, price = 140, title = "Book twelve", author = "Neelesh ji", category = "Fiction" };
             Response response = bookservice.Post(book);
             List<Book> booklist = response.booklist;
             string responseMessage = response.message;
@@ -97,7 +94,7 @@ namespace WebAPI.Tests
         public void PUT_Change_In_Book_Id()
         {
             Book book = new Book() { id = 12, price = 140, title = "Book twelve", author = "Neelesh ji", category = "Fiction" };
-            Response response = bookservice.Put(1,book);
+            Response response = bookservice.Put(1, book);
             List<Book> booklist = response.booklist;
             string msg = response.message;
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebApiDemo.Data
+﻿namespace WebApiDemo.Data
 {
     public class Book
     {

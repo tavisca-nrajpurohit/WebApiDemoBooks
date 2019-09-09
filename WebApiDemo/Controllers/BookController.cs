@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using WebApiDemo.Model;
-using WebApiDemo.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApiDemo.Contracts;
+using WebApiDemo.Data;
+using WebApiDemo.Model;
 
 namespace WebApiDemo.Controllers
 {
@@ -22,7 +15,7 @@ namespace WebApiDemo.Controllers
         [HttpGet]
         public ActionResult<Response> Get()
         {
-            Response response =  bookService.Get();
+            Response response = bookService.Get();
             return StatusCode(response.statusCode, response);
         }
 
