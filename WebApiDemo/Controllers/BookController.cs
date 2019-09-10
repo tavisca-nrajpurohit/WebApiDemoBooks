@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebApiDemo.Contracts;
 using WebApiDemo.Data;
 using WebApiDemo.Model;
@@ -10,6 +12,14 @@ namespace WebApiDemo.Controllers
     public class BookController : ControllerBase
     {
         BookService bookService = new BookService();
+        private readonly IValidator<Book> _bookValidator;
+        private readonly IValidator<int> _idValidator;
+
+        public BookController(IValidator<Book> bookValidator, IValidator<int> idValidator)
+        {
+            _bookValidator = bookValidator;
+            _idValidator = idValidator;
+        }
 
         // GET: api/Book
         [HttpGet]
@@ -23,32 +33,83 @@ namespace WebApiDemo.Controllers
         [HttpGet("{id}", Name = "Get")]
         public ActionResult<Response> Get(int id)
         {
-            Response response = bookService.Get(id);
-            return StatusCode(response.statusCode, response);
+            var validationResult = _idValidator.Validate(id);
+            List<string> response_message = new List<string>();
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                    response_message.Add(error.ToString());
+                return StatusCode(400, response_message);
+            }
+            else
+            {
+                Response response = bookService.Get(id);
+                return StatusCode(response.statusCode, response);
+            }
+
         }
 
         // POST: api/Book
         [HttpPost]
         public ActionResult<Response> Post([FromBody] Book book)
         {
-            Response response = bookService.Post(book);
-            return StatusCode(response.statusCode, response);
+            var validationResult = _bookValidator.Validate(book);
+            List<string> response_message = new List<string>();
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                    response_message.Add(error.ToString());
+                return StatusCode(400, response_message);
+            }
+            else
+            {
+                Response response = bookService.Post(book);
+                return StatusCode(response.statusCode, response);
+            }
+
         }
 
         // PUT: api/Dummy/5
         [HttpPut("{id}")]
         public ActionResult<Response> Put(int id, [FromBody] Book book)
         {
-            Response response = bookService.Put(id, book);
-            return StatusCode(response.statusCode, response);
+            var validationResult = _bookValidator.Validate(book);
+            List<string> response_message = new List<string>();
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                    response_message.Add(error.ToString());
+                return StatusCode(400, response_message);
+            }
+            else
+            {
+                Response response = bookService.Put(id, book);
+                return StatusCode(response.statusCode, response);
+            }
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public ActionResult<Response> Delete(int id)
         {
-            Response response = bookService.Delete(id);
-            return StatusCode(response.statusCode, response);
+            var validationResult = _idValidator.Validate(id);
+            List<string> response_message = new List<string>();
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                    response_message.Add(error.ToString());
+                return StatusCode(400, response_message);
+            }
+            else
+            {
+                Response response = bookService.Delete(id);
+                return StatusCode(response.statusCode, response);
+            }
+
         }
     }
 }
