@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http.Internal;
 using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using WebApiDemo.Logger;
 
@@ -46,24 +45,17 @@ namespace WebApiDemo.Middleware
 
         private async Task<string> FormatRequest(HttpRequest request)
         {
-            var body = request.Body;
-
-            //This line allows us to set the reader for the request back at the beginning of its stream.
             request.EnableRewind();
 
-            //We now need to read the request stream.  First, we create a new byte[] with the same length as the request stream...
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
 
-            //...Then we copy the entire request stream into the new buffer.
-            await request.Body.ReadAsync(buffer, 0, buffer.Length);
+            await request.Body.ReadAsync(buffer, 0, buffer.Length).ConfigureAwait(false);
 
-            //We convert the byte[] into a string using UTF8 encoding...
-            var bodyAsText = Encoding.UTF8.GetString(buffer);
+            var bodyText = await new StreamReader(request.Body).ReadToEndAsync();
 
-            //..and finally, assign the read body back to the request body, which is allowed because of EnableRewind()
-            request.Body = body;
+            request.Body.Position = 0;
 
-            return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
+            return $"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyText}{Environment.NewLine}{Environment.NewLine}";
         }
 
         private async Task<string> FormatResponse(HttpResponse response)

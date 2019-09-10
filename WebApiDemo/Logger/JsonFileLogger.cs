@@ -29,9 +29,6 @@ namespace WebApiDemo.Logger
         }
 
         public string Time { get; set; }
-        //public string Status { get; set; }
-        //public string Type { get; set; }
-
         public object Request { get; set; }
 
         public object Response { get; set; }
